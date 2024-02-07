@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine 💞</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #ff5252;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #ff6f6f;
+        }
+        .btn-secondary {
+            background-color: #4285f4;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #6aa1f7;
+        }
+        .btn-smaller {
+            transform: scale(0.8);
+        }
+        .btn-bigger {
+            transform: scale(1.2);
+        }
+        .btn-smaller2 {
+            transform: scale(0.6);
+        }
+        .btn-bigger2 {
+            transform: scale(1.4);
+        }
+        .btn-smaller3 {
+            transform: scale(0.4);
+        }
+        .btn-bigger3 {
+            transform: scale(1.6);
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="dog.jpg" alt="Valentine's Dog">
+    <h1>Do you want to be my valentine?</h1>
+    <div class="btn-container">
+        <button id="yesBtn" class="btn btn-primary">Yes</button>
+        <button id="noBtn" class="btn btn-secondary">No</button>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const body = document.body;
+        let isBtnClicked = 0;
+        let isTeleported = false;
+
+        yesBtn.addEventListener('click', function() {
+            window.location.href = 'response.html';
+        });
+
+        noBtn.addEventListener('click', function() {
+            if (isBtnClicked == 0) {
+                noBtn.textContent = "Are you sure?";
+                noBtn.classList.add('btn-smaller');
+                yesBtn.classList.add('btn-bigger');
+                isBtnClicked++;
+            } else if (isBtnClicked == 1) {
+                noBtn.textContent = "Really sure?";
+                yesBtn.classList.add('btn-bigger2');
+                noBtn.classList.add('btn-smaller2');
+                isBtnClicked++;
+            } else if (isBtnClicked == 2) {
+                noBtn.textContent = "Think again!";
+                yesBtn.classList.add('btn-bigger3');
+                noBtn.classList.add('btn-smaller3');
+                noBtn.addEventListener('click', teleport);
+                isBtnClicked++;
+            } else {
+                noBtn.textContent = "Change your mind";
+                noBtn.addEventListener('mouseenter', teleport);
+                noBtn.addEventListener('touchstart', teleport);
+                noBtn.addEventListener('mouseleave', function() {
+                    isTeleported = false;
+                });
+            }
+        });
+
+        function teleport() {
+            if (!isTeleported) {
+                const randomX = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+                const randomY = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = randomX + 'px';
+                noBtn.style.top = randomY + 'px';
+                isTeleported = true;
+            }
+        }
+    </script>
+</body>
+</html>
