@@ -17,5 +17,6 @@ The webpage features a heartwarming message asking your loved one to be your val
 
 # Installation
 No installation is required. Simply download the HTML file and open it in a web browser to enjoy the Valentine's Day experience.
+You can simply enter on this: https://nerdfilip.github.io/Be-My-Valentine/ask
 
 **Note: I created this website for my loved one and you can use this for your loved one!**
